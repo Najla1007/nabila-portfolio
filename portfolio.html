@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nurul Nabila Najla Roslan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#07131F;
+    --deep:#0E2238;
+    --surface:#142C46;
+    --surface-2:#1A3450;
+    --teal:#2FD9C4;
+    --coral:#FF7A59;
+    --foam:#EAF3F2;
+    --mist:#93A8BD;
+    --line: rgba(234,243,242,0.12);
+    --maxw: 1080px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--foam);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(47,217,196,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 110% 30%, rgba(255,122,89,0.07), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative; z-index:1; }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:14px; height:1px;
+    background:var(--teal);
+    display:inline-block;
+  }
+
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; margin:0; color:var(--foam); }
+  a{ color:inherit; text-decoration:none; }
+
+  /* NAV */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter: blur(10px);
+    background:rgba(7,19,31,0.78);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px; letter-spacing:0.06em;
+    color:var(--foam);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:5px 10px;
+  }
+  .nav-links{ display:flex; gap:28px; }
+  .nav-links a{
+    font-size:14px; color:var(--mist);
+    transition:color .2s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--teal); }
+
+  /* HERO */
+  .hero{
+    padding:108px 0 90px;
+    text-align:center;
+  }
+  .hero h1{
+    font-size:clamp(34px, 6vw, 58px);
+    font-weight:700;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+  .hero .role{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--mist);
+    font-size:15px;
+    margin-top:14px;
+  }
+  .hero p.sub{
+    max-width:560px;
+    margin:22px auto 0;
+    color:var(--mist);
+    font-size:16.5px;
+    line-height:1.65;
+  }
+
+  .cta-row{
+    display:flex; gap:14px; justify-content:center; margin-top:34px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Inter', sans-serif;
+    font-weight:600; font-size:14.5px;
+    padding:13px 24px;
+    border-radius:8px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+  .btn-primary{ background:var(--teal); color:#06201C; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(47,217,196,0.18); }
+  .btn-ghost{ background:transparent; color:var(--foam); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal); transform:translateY(-2px); }
+
+  /* SONAR SIGNATURE */
+  .sonar{
+    position:relative;
+    width:240px; height:240px;
+    margin:64px auto 30px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ring{
+    position:absolute;
+    border:1.5px solid var(--teal);
+    border-radius:50%;
+    opacity:0;
+    animation: ping 3.6s cubic-bezier(0.2,0.6,0.4,1) infinite;
+  }
+  .ring.r1{ width:60px; height:60px; animation-delay:0s; }
+  .ring.r2{ width:60px; height:60px; animation-delay:1.2s; }
+  .ring.r3{ width:60px; height:60px; animation-delay:2.4s; }
+  @keyframes ping{
+    0%{ width:60px; height:60px; opacity:0.85; }
+    80%{ width:230px; height:230px; opacity:0; }
+    100%{ width:230px; height:230px; opacity:0; }
+  }
+  .sonar-core{
+    position:relative; z-index:2;
+    width:64px; height:64px;
+    border-radius:50%;
+    background:var(--surface);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 0 6px rgba(47,217,196,0.06);
+  }
+  .sonar-core svg{ width:28px; height:28px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .ring{ animation:none; opacity:0.18; }
+  }
+
+  .stack-row{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:8px;
+  }
+  .chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px; color:var(--mist);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:6px 13px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .chip .dot{ width:5px; height:5px; border-radius:50%; background:var(--teal); display:inline-block; }
+
+  /* WAVE DIVIDER */
+  .wave{ display:block; width:100%; height:48px; }
+  .wave path{ fill:var(--deep); }
+
+  section{ position:relative; }
+  .section-pad{ padding:88px 0; }
+  .bg-deep{ background:var(--deep); }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid; grid-template-columns: 1.1fr 1.4fr; gap:56px; align-items:start;
+  }
+  .about-grid p{ color:var(--mist); font-size:16px; line-height:1.75; }
+  .skills-cols{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; }
+  .skill-col h3{ font-size:14px; color:var(--foam); margin-bottom:14px; font-weight:600; }
+  .skill-col .chip{ margin-bottom:8px; width:max-content; }
+  .skill-col .chips-wrap{ display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+
+  /* PROJECTS */
+  .proj-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:40px;
+    margin-bottom:28px;
+  }
+  .proj-featured{
+    display:grid; grid-template-columns: 1.15fr 1fr; gap:46px; align-items:center;
+  }
+  .proj-tag{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--coral);
+    border:1px solid rgba(255,122,89,0.35);
+    border-radius:5px;
+    padding:4px 9px;
+    margin-bottom:16px;
+  }
+  .proj-card h3{ font-size:25px; line-height:1.3; margin-bottom:14px; }
+  .proj-card p.desc{ color:var(--mist); font-size:15.5px; line-height:1.7; margin-bottom:20px; }
+  .tag-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+  .link-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .link-btn{
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+    display:inline-flex; align-items:center; gap:7px;
+    color:var(--foam);
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:9px 14px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .link-btn:hover, .link-btn:focus-visible{ border-color:var(--teal); color:var(--teal); }
+  .link-btn svg{ width:14px; height:14px; }
+
+  /* STEP DIAGRAM */
+  .flow{
+    background:var(--ink);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:30px 22px;
+  }
+  .flow-steps{ display:flex; flex-direction:column; gap:0; }
+  .flow-step{ display:flex; gap:16px; align-items:flex-start; padding:14px 0; }
+  .flow-step .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--teal);
+    border:1px solid var(--line); border-radius:50%;
+    width:30px; height:30px; min-width:30px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .flow-step .txt h4{ font-size:14.5px; color:var(--foam); margin:0 0 4px; font-weight:600; font-family:'Inter',sans-serif; }
+  .flow-step .txt p{ font-size:13px; color:var(--mist); margin:0; line-height:1.55; }
+  .flow-line{ width:1px; height:20px; background:var(--line); margin-left:14.5px; }
+
+  .shot-placeholder{
+    margin-top:18px;
+    border:1.5px dashed var(--line);
+    border-radius:10px;
+    padding:26px 16px;
+    text-align:center;
+    color:var(--mist);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+  }
+
+  .proj-secondary{ display:grid; grid-template-columns: 1.3fr 1fr; gap:40px; align-items:center; }
+  .proj-secondary .flow{ padding:22px; }
+
+  /* EXPERIENCE */
+  .timeline{ border-left:1px solid var(--line); padding-left:30px; display:flex; flex-direction:column; gap:34px; }
+  .tl-item{ position:relative; }
+  .tl-item::before{
+    content:""; position:absolute; left:-35px; top:4px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--ink); border:2px solid var(--teal);
+  }
+  .tl-item h4{ font-size:16px; font-weight:600; color:var(--foam); font-family:'Inter',sans-serif; }
+  .tl-item .org{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--mist); margin:4px 0 8px; }
+  .tl-item p{ color:var(--mist); font-size:14.5px; line-height:1.65; margin:0; max-width:560px; }
+
+  /* CONTACT / FOOTER */
+  .contact{ text-align:center; }
+  .contact h2{ font-size:clamp(26px,4vw,38px); margin-bottom:16px; }
+  .contact p.sub{ color:var(--mist); max-width:480px; margin:0 auto 36px; line-height:1.6; }
+  .contact-links{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  footer{
+    text-align:center; padding:30px 0 40px;
+    color:var(--mist); font-size:12.5px;
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 760px){
+    .about-grid, .proj-featured, .proj-secondary{ grid-template-columns:1fr; }
+    .skills-cols{ grid-template-columns:1fr 1fr; gap:20px; }
+    .nav-links{ display:none; }
+    .proj-card{ padding:28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-mark">NNNR</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <p class="eyebrow" style="justify-content:center;">Maritime Informatics → Mobile Engineering</p>
+  <h1>Nurul Nabila Najla Roslan</h1>
+  <p class="role">Final-Year Computer Science Student · Kuala Terengganu</p>
+  <p class="sub">I build Android apps where the real world meets the screen — from an AR-powered fitting room that measures bodies in real time, to full-stack systems that keep everyday bookings from colliding.</p>
+
+  <div class="sonar" aria-hidden="true">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="sonar-core">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2FD9C4" stroke-width="1.6">
+        <rect x="6" y="2" width="12" height="20" rx="2.2"/>
+        <line x1="10" y1="18.3" x2="14" y2="18.3" stroke-linecap="round"/>
+        <path d="M9 7.5h6M9 10.5h4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="stack-row">
+    <span class="chip"><span class="dot"></span>Java</span>
+    <span class="chip"><span class="dot"></span>Kotlin</span>
+    <span class="chip"><span class="dot"></span>Android Studio</span>
+    <span class="chip"><span class="dot"></span>AR / Camera APIs</span>
+    <span class="chip"><span class="dot"></span>MySQL</span>
+  </div>
+
+  <div class="cta-row">
+    <a href="#work" class="btn btn-primary">View my work</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+</header>
+
+<svg class="wave" viewBox="0 0 1440 48" preserveAspectRatio="none"><path d="M0,24 C240,48 480,0 720,18 C960,36 1200,6 1440,24 L1440,48 L0,48 Z"></path></svg>
+
+<section class="bg-deep section-pad" id="about">
+  <div class="wrap">
+    <p class="eyebrow">Who I Am</p>
+    <div class="about-grid">
+      <div>
+        <h2 style="font-size:30px; line-height:1.25;">Computer Science with a maritime accent.</h2>
+      </div>
+      <div>
+        <p>I'm a final-year Computer Science student at Universiti Malaysia Terengganu, majoring in Maritime Informatics — a programme that pairs core software engineering with applied, real-world systems thinking. That mindset shows up in how I build: starting from an actual problem (a person guessing their clothing size, a library room double-booked) and working back to the data structures, algorithms, and interfaces that solve it. I'm currently available for a 3–6 month internship.</p>
+        <div class="skills-cols" style="margin-top:30px;">
+          <div class="skill-col">
+            <h3>Languages</h3>
+            <div class="chips-wrap">
+              <span class="chip"><span class="dot"></span>Java</span>
+              <span class="chip"><span class="dot"></span>Kotlin</span>
+              <span class="chip"><span class="dot"></span>JavaScript</span>
+              <span class="chip"><span class="dot"></span>SQL</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <h3>Concepts</h3>
+            <div class="chips-wrap">
+              <span class="chip"><span class="dot"></span>Data Structures &amp; Algorithms</span>
+              <span class="chip"><span class="dot"></span>Database Design</span>
+              <span class="chip"><span class="dot"></span>Mobile Dev</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <h3>Tools</h3>
+            <div class="chips-wrap">
+              <span class="chip"><span class="dot"></span>Android Studio</span>
+              <span class="chip"><span class="dot"></span>Git / GitHub</span>
+              <span class="chip"><span class="dot"></span>VS Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="work">
+  <div class="wrap">
+    <p class="eyebrow">Selected Work</p>
+    <h2 style="font-size:32px; margin-bottom:36px;">Two builds, one habit: solve a real problem first.</h2>
+
+    <div class="proj-card proj-featured">
+      <div>
+        <span class="proj-tag">Final Year Project</span>
+        <h3>AR Measurement System for Clothing Recommendation</h3>
+        <p class="desc">An Android app that uses the phone's camera to capture body measurements in augmented reality, then runs that data through a sizing algorithm to recommend the right clothing fit automatically — built to tackle a problem nearly everyone has felt while shopping online.</p>
+        <div class="tag-row">
+          <span class="chip"><span class="dot"></span>Java</span>
+          <span class="chip"><span class="dot"></span>Android Studio</span>
+          <span class="chip"><span class="dot"></span>AR / Camera</span>
+          <span class="chip"><span class="dot"></span>MySQL</span>
+        </div>
+        <div class="shot-placeholder">App screenshots &amp; demo clip coming soon</div>
+      </div>
+      <div class="flow">
+        <div class="flow-steps">
+          <div class="flow-step">
+            <span class="num">1</span>
+            <div class="txt"><h4>Scan</h4><p>Camera captures body reference points in AR.</p></div>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <span class="num">2</span>
+            <div class="txt"><h4>Measure</h4><p>Sizing algorithm converts AR data into real measurements.</p></div>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <span class="num">3</span>
+            <div class="txt"><h4>Recommend</h4><p>App matches measurements to the right clothing size, stored via MySQL.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card proj-secondary">
+      <div>
+        <h3 style="font-size:21px;">Library Room Booking System</h3>
+        <p class="desc">A full-stack web app for booking university library rooms, with user authentication and a schema designed to prevent double-booked time slots.</p>
+        <div class="tag-row">
+          <span class="chip"><span class="dot"></span>HTML/CSS/JS</span>
+          <span class="chip"><span class="dot"></span>JSP</span>
+          <span class="chip"><span class="dot"></span>MySQL</span>
+        </div>
+        <div class="link-row">
+          <a class="link-btn" href="https://github.com/Najla1007/Library_Booking_System" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.9.57.1.78-.25.78-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.72-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.59.23 2.76.11 3.05.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.17v3.22c0 .31.21.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+      <div class="flow">
+        <div class="flow-steps">
+          <div class="flow-step">
+            <span class="num">1</span>
+            <div class="txt"><h4>Authenticate</h4><p>Students log in before reserving a room.</p></div>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <span class="num">2</span>
+            <div class="txt"><h4>Book</h4><p>Schema checks for time-slot conflicts before confirming.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 48" preserveAspectRatio="none" style="transform:scaleY(-1);"><path d="M0,24 C240,48 480,0 720,18 C960,36 1200,6 1440,24 L1440,48 L0,48 Z"></path></svg>
+
+<section class="bg-deep section-pad" id="experience">
+  <div class="wrap">
+    <p class="eyebrow">Involvement</p>
+    <h2 style="font-size:30px; margin-bottom:40px;">Outside the codebase.</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <h4>University Sports Volunteer</h4>
+        <p class="org">Universiti Malaysia Terengganu</p>
+        <p>Assisted with event coordination, participant registration, and logistics for university-level sports events.</p>
+      </div>
+      <div class="tl-item">
+        <h4>SUTERA Sports Volunteer</h4>
+        <p class="org">Majlis Sukan Negeri Terengganu</p>
+        <p>Supported district-level sports event operations and participant coordination.</p>
+      </div>
+      <div class="tl-item">
+        <h4>Event Crew — Milo Breakfast Day</h4>
+        <p class="org">Milo (Nestlé Malaysia)</p>
+        <p>Assisted with event setup, product distribution, and crowd management at a nationwide promotional event.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center;">Let's Connect</p>
+    <h2>Open to internship opportunities.</h2>
+    <p class="sub">3–6 month placements welcome — happy to talk about Android, AR, or anything data-structures-shaped.</p>
+    <div class="contact-links">
+      <a class="link-btn" href="mailto:nabilanajla1007@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        nabilanajla1007@gmail.com
+      </a>
+      <a class="link-btn" href="tel:+60112550709">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.6 10.5c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.7 3.5.8.6 0 1 .5 1 1V20c0 .6-.5 1-1 1C10.6 21 3 13.4 3 4.2c0-.6.5-1 1-1h3.6c.6 0 1 .4 1 1 .1 1.2.4 2.4.8 3.5.1.4 0 .8-.2 1l-2.6 1.8Z"/></svg>
+        011-2550 5709
+      </a>
+      <a class="link-btn" href="https://linkedin.com/in/nabila-najla-a66a3338a" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.05c.53-1 1.83-1.94 3.77-1.94 4.03 0 4.78 2.55 4.78 5.86V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.41-2.08 2.86V21h-4V9Z"/></svg>
+        LinkedIn
+      </a>
+      <a class="link-btn" href="https://github.com/Najla1007" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.9.57.1.78-.25.78-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.72-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.59.23 2.76.11 3.05.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.17v3.22c0 .31.21.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>Built by Nurul Nabila Najla Roslan · 2026</footer>
+
+</body>
+</html>
